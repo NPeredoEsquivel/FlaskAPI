@@ -1,0 +1,8 @@
+<div class="formwrapper">
+  <h2 class="title">Hello</h2>
+  <form method="POST" action="/">
+      <div class="form-field">{{ form.fullname.label }} {{ form.fullname(size=30) }}</div>
+      <div class="form-field">{{ form.date.label }} {{ form.date }}</div>
+      {{ form.submit }}
+  </form>
+</div>
