@@ -2,9 +2,15 @@ from flask import Flask, jsonify, render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from forms import UserInfoForm
 import requests, json
+from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__, template_folder='templates')
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+# app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 @app.route('/')
 def homepage():
