@@ -1,5 +1,5 @@
 
-Requisitos:
+#Requisitos:
 Sistema operativo macOS
 
 Extraer el proyecto a una carpeta con git clone
@@ -15,6 +15,7 @@ Instalar diferentes modulos:
 pip install virtualenv
 
 virtualenv flaskapp
+```
 pip install flask
 pip install flask-sqlalchemy
 pip install flask-wtf
@@ -23,6 +24,8 @@ pip install python
 pip install virtualenv
 pip install flask-migrate
 pip install flask-bootstrap
+
+```
 
 
 flask db init
