@@ -8,11 +8,13 @@ import requests, json
 
 db = SQLAlchemy()
 
+
 def create_app():
     app = Flask(__name__, static_folder="static", template_folder='templates')
 
     app.config.from_object(Config)
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     app.config['COMPRESSOR_DEBUG'] = app.config.get('DEBUG')
     app.config['COMPRESSOR_STATIC_PREFIX'] = 'static'

@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+   {% if content %}
+    {{content}}
+  {% endif %}
 <div class="formwrapper">
   <h2 class="title">Hello</h2>
   <form method="POST"">
@@ -19,14 +22,19 @@
         {% if persons %}
           {% for user in persons %}
             <ul id="user.username">
-              <li>Username: {{ user.username }}</li>
-              <li>Email: {{ user.date }}</li>
+              <li>Primer nombre: {{ user.firstname }}</li>
+              <li>Segundo nombre: {{ user.lastname }}</li>
+              <li>Fecha nacimiento: {{ user.date }}</li>
+              <li>Edad: {{ user.age }}</li>
+              <li>Edad: {{ user.daystobirthday }}</li>
               <li>Created: {{ user.birthday }}</li>
               <li>Bio: {{ user.poem }}</li>
             </ul>
           {% endfor %}
         {% endif %}
   </form>
+
+
 </div>
 
 {% endblock %}
