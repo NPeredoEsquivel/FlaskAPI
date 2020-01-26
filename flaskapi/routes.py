@@ -13,7 +13,7 @@ import random
 def calculate_dates(birthday, now):
     delta1 = datetime(now.year, birthday.month, birthday.day).date()
     delta2 = datetime(now.year+1, birthday.month, birthday.day).date()
-    days = (max(delta1, delta2) - now).days
+    days = (min(delta1, delta2) - now).days
 
     return days
 
