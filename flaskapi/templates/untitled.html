@@ -1,0 +1,11 @@
+{% for user in persons %}
+            <ul id="user.username">
+              <li>Primer nombre: {{ user.firstname }}</li>
+              <li>Segundo nombre: {{ user.lastname }}</li>
+              <li>Fecha nacimiento: {{ user.date }}</li>
+              <li>Edad: {{ user.age }}</li>
+              <li>Edad: {{ user.daystobirthday }}</li>
+              <li>Created: {{ user.birthday }}</li>
+              <li>Bio: {{ user.poem }}</li>
+            </ul>
+          {% endfor %}

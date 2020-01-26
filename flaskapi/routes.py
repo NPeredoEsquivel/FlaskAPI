@@ -14,8 +14,7 @@ def calculate_dates(birthday, now):
     delta1 = datetime(now.year, birthday.month, birthday.day).date()
     delta2 = datetime(now.year+1, birthday.month, birthday.day).date()
     days = (max(delta1, delta2) - now).days
-    if days >= 365:
-        days = 0
+
     return days
 
 def jsonManipulation(content):
@@ -56,15 +55,21 @@ def homepage():
             days = calculate_dates(datetime_object,today)
 
             fullNameSplit = fullname.split()
-            if days == 0:
+            firstName = fullNameSplit[0]
+            if len(fullNameSplit) == 1:
+                lastName = ""
+            else:
+                lastName = fullNameSplit[1]
+
+            if days == 366 or days == 355:
                 birthday = True
                 poem=randomPoem
             else:
                 birthday = False
                 poem = ""
             # Create an instance of the User class
-            new_user = Person(firstname=fullNameSplit[0],
-                        lastname = fullNameSplit[1],
+            new_user = Person(firstname=firstName,
+                        lastname = lastName,
                         date=datetime_object,
                         age = difference_in_years,
                         daystobirthday = days,
@@ -72,9 +77,11 @@ def homepage():
                         poem=poem)
             db.session.add(new_user)  # Adds new User record to database
             db.session.commit()
+            #Return all persons in database
             persons = Person.query.all()
-            return render_template('person.html', persons = persons, form= form, content = days)
+            return render_template('person.html', persons = persons, form= form)
 
+    #When the page is refreshed, remove all persons
     if personCount > 0:
         db.session.query(Person).delete()
         db.session.commit()

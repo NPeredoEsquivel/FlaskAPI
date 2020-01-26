@@ -4,9 +4,10 @@
    {% if content %}
     {{content}}
   {% endif %}
-<div class="formwrapper">
-  <h2 class="title">Hello</h2>
-  <form method="POST"">
+
+<div class="form-signin">
+  <h2 class="title center">Soy un simple formulario</h2>
+  <form class="form form-horizontal" method="POST"">
         {{ form.csrf_token }}
         <div class="form-field">{{ form.fullname.label }} {{ form.fullname(size=30) }}</div>
         {% for error in form.fullname.errors %}
@@ -16,20 +17,34 @@
         {% for error in form.date.errors %}
             <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
-        {{ form.submit }}
+        <!-- {{ form.submit }} -->
+        <input class="btn btn-primary" type="submit" value="Enviar">
         <!-- {{form.errors}} -->
         {{date}}
         {% if persons %}
-          {% for user in persons %}
-            <ul id="user.username">
-              <li>Primer nombre: {{ user.firstname }}</li>
-              <li>Segundo nombre: {{ user.lastname }}</li>
-              <li>Fecha nacimiento: {{ user.date }}</li>
-              <li>Edad: {{ user.age }}</li>
-              <li>Edad: {{ user.daystobirthday }}</li>
-              <li>Created: {{ user.birthday }}</li>
-              <li>Bio: {{ user.poem }}</li>
-            </ul>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Primer nombre</th>
+              <th scope="col">Segundo nombre</th>
+              <th scope="col">Fecha de nacimiento</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Dias sig. cumpleaños</th>
+              <th scope="col">Mensaje</th>
+              <th scope="col">Poema</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in persons %}
+            <tr>
+              <td>{{ user.firstname }}</td>
+              <td>{{ user.lastname }}</td>
+              <td>{{ user.date }}</td>
+              <td>{{ user.age }}</td>
+              <td>{{ user.daystobirthday }}</td>
+              <td>{% if user.birthday %} Felicidades! {% else %} No estás de cumpleaños{% endif %}</td>
+              <td>{% if user.poem %} {{user.poem}}{% else %} No estás de cumpleaños {% endif %}</td>
+            </tr>
           {% endfor %}
         {% endif %}
   </form>
