@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="formwrapper">
+  <h2 class="title">Hello</h2>
+  <form method="POST"">
+        {{ form.csrf_token }}
+        <div class="form-field">{{ form.fullname.label }} {{ form.fullname(size=30) }}</div>
+        {% for error in form.fullname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        <div class="form-field">{{ form.date.label }} {{ form.date }}</div>
+        {% for error in form.date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {{ form.submit }}
+        <!-- {{form.errors}} -->
+        {{date}}
+        {% if persons %}
+          {% for user in persons %}
+            <ul id="user.username">
+              <li>Username: {{ user.username }}</li>
+              <li>Email: {{ user.datetime }}</li>
+              <li>Created: {{ user.birthday }}</li>
+              <li>Bio: {{ user.poem }}</li>
+            </ul>
+          {% endfor %}
+        {% endif %}
+  </form>
+</div>
+
+{% endblock %}
