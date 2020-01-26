@@ -7,7 +7,7 @@ from datetime import datetime
 from .models import db, Person
 
 def days_between(d1, d2):
-    d1 = datetime.strptime(d1, "%Y-%m-%d")
+
     d2 = datetime.strptime(d2, "%Y-%m-%d")
     return abs((d2 - d1).days)
 
@@ -29,17 +29,18 @@ def homepage():
         if form.validate_on_submit():
             fullname = request.form.get('fullname')
             date = request.form.get('date')
-            daysDiff = days_between()
+            today = datetime.now().date()
+            # daysDiff = days_between(today, date)
 
             new_user = Person(username=fullname,
-                        datetime=datetime.now().date(),
+                        date=date,
                         birthday=False,
                         poem="In West Philadelphia born and raised, on the playground is where I spent most of my days")  # Create an instance of the User class
             db.session.add(new_user)  # Adds new User record to database
             db.session.commit()
             persons = Person.query.all()
             if fullname:
-                return render_template('person.html', persons = persons, form= form, date = date)
+                return render_template('person.html', persons = persons, form= form, date = daysDiff)
             else:
                 return render_template('person.html', fullname = "error", date = "error", form = form)
     if personCount > 0:
