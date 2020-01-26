@@ -39,5 +39,5 @@ export FLASK_APP=__init__.py
 ```
 
 Dirigirse a http://localhost:5000/ y probar la api.
-Al dirigirse nuevamente a la direccion dada (sin recargar), se eliminarán todos los registros ingresados.
+Al dirigirse nuevamente a la direccion dada (sin recargar), con esta acción se eliminarán todos los registros ingresados.
 
